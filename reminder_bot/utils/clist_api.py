@@ -4,7 +4,7 @@ import datetime as dt
 import requests
 import json
 
-from remind import constants
+from reminder_bot import constants
 from discord.ext import commands
 
 from pathlib import Path
