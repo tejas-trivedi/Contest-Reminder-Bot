@@ -14,7 +14,6 @@ URL_BASE = 'https://clist.by/api/v1/contest/'
 _CLIST_API_TIME_DIFFERENCE = 30 * 60
 
 
-
 class ClistApiError(commands.CommandError):
 
     def __init__(self, message=None):
@@ -43,3 +42,29 @@ def _query_api():
     except Exception as e:
         logger.error(f'Request to Clist API encountered error: {e!r}')
         raise ClientError from e
+
+
+def cache(forced=False):
+
+    current_time_stamp = dt.datetime.utcnow().timestamp()
+    db_file = Path(constants.CONTESTS_DB_FILE_PATH)
+
+    db = None
+    try:
+        with db_file.open() as f:
+            db = json.load(f)
+    except BaseException:
+        pass
+
+    last_time_stamp = db['querytime'] if db and db['querytime'] else 0
+
+    if not forced and current_time_stamp - \
+            last_time_stamp < _CLIST_API_TIME_DIFFERENCE:
+        return
+
+    contests = _query_api()
+    db = {}
+    db['querytime'] = current_time_stamp
+    db['objects'] = contests
+    with open(db_file, 'w') as f:
+        json.dump(db, f)
