@@ -20,7 +20,7 @@ import os
 
 from reminder_bot.utils.rounds import Round
 from reminder_bot.utils import discord_common
-from reminder_bot.utils import paginator
+from reminder_bot.utils import pagination
 from reminder_bot import constants
 from reminder_bot.utils import clist_api as clist
 
