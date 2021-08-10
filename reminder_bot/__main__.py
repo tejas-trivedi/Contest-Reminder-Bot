@@ -4,13 +4,13 @@ import discord
 import logging
 from logging.handlers import TimedRotatingFileHandler
 from os import environ
-from remind import constants
+from reminder_bot import constants
 
 from discord.ext import commands
 from dotenv import load_dotenv
 from pathlib import Path
-from remind.util import discord_common
-from remind.util import clist_api
+from reminder_bot.utils import discord_common
+from reminder_bot.utils import clist_api
 
 
 def setup():
