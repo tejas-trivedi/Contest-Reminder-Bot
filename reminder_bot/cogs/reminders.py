@@ -18,11 +18,11 @@ import discord
 from discord.ext import commands
 import os
 
-from remind.util.rounds import Round
-from remind.util import discord_common
-from remind.util import paginator
-from remind import constants
-from remind.util import clist_api as clist
+from reminder_bot.utils.rounds import Round
+from reminder_bot.utils import discord_common
+from reminder_bot.utils import paginator
+from reminder_bot import constants
+from reminder_bot.utils import clist_api as clist
 
 _CONTESTS_PER_PAGE = 5
 _CONTEST_PAGINATE_WAIT_TIME = 5 * 60
